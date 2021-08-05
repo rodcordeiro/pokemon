@@ -104,6 +104,26 @@ class Pokemon{
             throw new Error(err)
         })
     }
+    async getPokemon(id: number){
+        return await this.api.get(`/pokemon/${id}`)
+          .then((response: any)=>{
+            //$.abilities[*].ability.name
+                  const poke : iPokemon = {
+                      id: this.pokeId,
+                      name: response.data.name,
+                      abilities: this.getAbilities(response.data.abilities),
+                      height: response.data.height,
+                      weight: response.data.weight,
+                      types: this.getType(response.data.types),
+                      image: response.data.sprites.front_default,
+                  }
+              return poke
+          })
+          .catch((err: any)=>{
+              throw new Error(err)
+          })
+      }
+      
     getPokeId() : void{
         const pokeId = Math.floor((Math.random()* this.POKEMON_INDEX)+1)
         if(pokeId <= 898 || pokeId >= 10001){
@@ -131,6 +151,4 @@ class Pokemon{
         return renderedType;
     }
 }
-const poke = new Pokemon();
-poke.getRandPokemon().then(response=>console.log(response))
 
