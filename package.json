@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules main.ts",
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules pokemon.ts",
     "build": "npx tsc -b",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
